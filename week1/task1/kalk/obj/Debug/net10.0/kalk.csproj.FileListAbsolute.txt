@@ -1,0 +1,15 @@
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\bin\Debug\net10.0\kalk.exe
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\bin\Debug\net10.0\kalk.deps.json
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\bin\Debug\net10.0\kalk.runtimeconfig.json
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\bin\Debug\net10.0\kalk.dll
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\bin\Debug\net10.0\kalk.pdb
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\obj\Debug\net10.0\kalk.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\obj\Debug\net10.0\kalk.AssemblyInfoInputs.cache
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\obj\Debug\net10.0\kalk.AssemblyInfo.cs
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\obj\Debug\net10.0\kalk.csproj.CoreCompileInputs.cache
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\obj\Debug\net10.0\kalk.sourcelink.json
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\obj\Debug\net10.0\kalk.dll
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\obj\Debug\net10.0\refint\kalk.dll
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\obj\Debug\net10.0\kalk.pdb
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\obj\Debug\net10.0\kalk.genruntimeconfig.cache
+C:\Users\Гей\source\repos\dmitrykotelev\practice\week1\task1\kalk\obj\Debug\net10.0\ref\kalk.dll
