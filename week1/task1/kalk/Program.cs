@@ -1,14 +1,11 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Reflection;
 
 namespace kalk
 {
     internal class Program
     {
         static List<string> operations = ["+","-","*","/",];
-        enum Operations
-        {
-            
-        }
 
         static int GetNum()
         {
@@ -32,6 +29,7 @@ namespace kalk
 
             if (operations.Contains(_operation))
                 return _operation;
+
             else
             {
                 Console.WriteLine("Wront operation, type a proper operation");
