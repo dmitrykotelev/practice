@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("kalk")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+baebf97f7a966febf491c9e116474ef29bb4e84c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f625cd7fb17f82bd74d630406b25a8dd53670f16")]
 [assembly: System.Reflection.AssemblyProductAttribute("kalk")]
 [assembly: System.Reflection.AssemblyTitleAttribute("kalk")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

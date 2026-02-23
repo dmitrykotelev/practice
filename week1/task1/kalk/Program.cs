@@ -4,9 +4,11 @@ namespace kalk
 {
     internal class Program
     {
-        static int num1, num2;
-        static string? operation;
         static List<string> operations = ["+","-","*","/",];
+        enum Operations
+        {
+            
+        }
 
         static int GetNum()
         {
@@ -25,15 +27,10 @@ namespace kalk
         }
         static string GetOperation()
         {
-            string _operation;
+            string? _operation;
             _operation = Console.ReadLine();
-            bool stat = false;
 
-            foreach (string op in operations)
-                if (op == _operation)
-                    stat = true;
-
-            if (stat)
+            if (operations.Contains(_operation))
                 return _operation;
             else
             {
@@ -45,7 +42,8 @@ namespace kalk
 
         static void MainCycle()
         {
-            int result = 0;
+            int num1, num2;
+            string? operation;
 
             Console.WriteLine("Type first number");
             num1 = GetNum();
@@ -54,6 +52,14 @@ namespace kalk
             Console.WriteLine("Type second number");
             num2 = GetNum();
 
+            Calc(num1,num2,operation);
+            return;
+
+        }
+
+        static bool Calc(int num1, int num2, string operation)
+        {
+            int result = 0;
             switch (operation)
             {
                 case "+":
@@ -78,18 +84,17 @@ namespace kalk
                             result = num1 / num2;
                             break;
                         }
-                        catch
+                        catch (DivideByZeroException ex)
                         {
                             Console.WriteLine("Error. Dividence by 0 detected");
-                            return;
-                            break;
+                            return false;
                         }
                     }
             }
 
             Console.WriteLine($"Result of {operation} operation is {result}");
+            return true;
         }
-
 
         static void Main()
         {
@@ -107,7 +112,7 @@ namespace kalk
                     st = Convert.ToInt32(Console.ReadLine());
                 }
                 if (st == 2)
-                return;
+                    return;
                 MainCycle();
             }
         }
