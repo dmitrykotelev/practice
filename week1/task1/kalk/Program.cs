@@ -1,8 +1,4 @@
-﻿using System.ComponentModel;
-using System.Reflection;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace kalk
+﻿namespace kalk
 {
     internal class Program
     {
@@ -105,9 +101,10 @@ namespace kalk
                     continue;
                 }
 
+                if (st == 1)
+                    MainCycle();
                 if (st == 2)
                     return;
-                MainCycle();
             }
         }
     }
