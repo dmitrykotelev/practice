@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace kalk
 {
@@ -9,32 +10,29 @@ namespace kalk
 
         static int GetNum()
         {
-            int _num;
-            try
+            int num;
+
+            if (int.TryParse(Console.ReadLine(), out num))
             {
-                _num = Convert.ToInt32(Console.ReadLine());
+                return num;
             }
-            catch
+            else
             {
                 Console.WriteLine("Eror. Type a number");
-                _num = GetNum();
-                return _num;
+                return GetNum();
             }
-            return _num; 
         }
         static string GetOperation()
         {
-            string? _operation;
-            _operation = Console.ReadLine();
+            string? operation = Console.ReadLine();
 
-            if (operations.Contains(_operation))
-                return _operation;
+            if (operations.Contains(operation))
+                return operation;
 
             else
             {
                 Console.WriteLine("Wront operation, type a proper operation");
-                _operation = GetOperation();
-                return _operation;
+                return GetOperation();
             }
         }
 
@@ -100,15 +98,13 @@ namespace kalk
             while (true)
             {
                 Console.WriteLine("Hello! \n Type what you want to do \n 1 - Use calculator \n 2 - Exit");
-                try
-                {
-                    st = Convert.ToInt32(Console.ReadLine());
-                }
-                catch
+
+                if (!int.TryParse(Console.ReadLine(), out st))
                 {
                     Console.WriteLine("Error Reading, try again");
-                    st = Convert.ToInt32(Console.ReadLine());
+                    continue;
                 }
+
                 if (st == 2)
                     return;
                 MainCycle();
