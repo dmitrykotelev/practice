@@ -1,7 +1,3 @@
-﻿using System.ComponentModel;
-using System.Reflection;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
 namespace kalk
 {
     internal class Program
