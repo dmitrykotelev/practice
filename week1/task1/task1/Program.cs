@@ -34,15 +34,13 @@
 
         static void MainCycle()
         {
-            int num1, num2;
-            string? operation;
 
             Console.WriteLine("Type first number");
-            num1 = GetNum();
+            int num1 = GetNum();
             Console.WriteLine("Type operation");
-            operation = GetOperation();
+            string operation = GetOperation();
             Console.WriteLine("Type second number");
-            num2 = GetNum();
+            int num2 = GetNum();
 
             Calc(num1, num2, operation);
             return;
@@ -90,20 +88,20 @@
 
         static void Main()
         {
-            int st = 1;
+            int UserChoise = 1;
             while (true)
             {
                 Console.WriteLine("Hello! \n Type what you want to do \n 1 - Use calculator \n 2 - Exit");
 
-                if (!int.TryParse(Console.ReadLine(), out st))
+                if (!int.TryParse(Console.ReadLine(), out UserChoise))
                 {
                     Console.WriteLine("Error Reading, try again");
                     continue;
                 }
 
-                if (st == 1)
+                if (UserChoise == 1)
                     MainCycle();
-                if (st == 2)
+                if (UserChoise == 2)
                     return;
             }
         }
