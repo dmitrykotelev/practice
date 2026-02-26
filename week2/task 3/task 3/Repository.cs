@@ -12,7 +12,7 @@ public class Repository
 
 	public void Add(Tasks tasks)
 	{
-		string query = "INSERT INTO Tasks (Name, Description, IsCompleted, CreatedAt) VALUES(@Name, @Description, @IsCompleted, @CreatedAt)";
+		string query = "INSERT INTO Tasks (Title, Description, IsCompleted, CreatedAt) VALUES(@Title, @Description, @IsCompleted, @CreatedAt)";
 
         db.Execute(query, tasks);
 	}
@@ -23,16 +23,16 @@ public class Repository
 		db.Execute(sqlQuery, new {id});
 
     }
-    public Tasks Get(int id)
+    public Tasks GetById(int id)
     {
         return db.Query<Tasks>("SELECT * FROM Tasks WHERE Id = @id", new { id }).FirstOrDefault();
     }
 
     public void Update (int id)
 	{
-		Tasks task = new Tasks(Get(id));
+		Tasks task = new Tasks(GetById(id));
 		task.ChangeStatus();
-		string sqlQuery = "Update Tasks SET Name = @Name, Description = @Description, IsCompleted = @IsCompleted, CreatedAt = @CreatedAt WHERE Id = @Id";
+		string sqlQuery = "Update Tasks SET Title = @Title, Description = @Description, IsCompleted = @IsCompleted, CreatedAt = @CreatedAt WHERE Id = @Id";
 
     }
 

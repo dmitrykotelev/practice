@@ -1,7 +1,9 @@
-﻿public class Tasks
+﻿using System.ComponentModel.DataAnnotations;
+
+public class Tasks
 {
     public int Id { get; set; }
-    public string Name { get; set; }
+    public string Title { get; set; }
     public string Description { get; set; }
     public bool IsCompleted { get; set; }
     public DateTime CreatedAt { get; set; }
@@ -15,14 +17,14 @@
 	public Tasks(Tasks tasks)
 	{
 		Id = tasks.Id;
-		Name = tasks.Name;
+		Title = tasks.Title;
 		Description = tasks.Description;
 		IsCompleted = tasks.IsCompleted;
 		CreatedAt = tasks.CreatedAt;
 	}
 	public Tasks(string name, string description)
 	{
-		Name = name;
+		Title = name;
 		Description = description;
 		IsCompleted = false;
 		CreatedAt = DateTime.Now;
