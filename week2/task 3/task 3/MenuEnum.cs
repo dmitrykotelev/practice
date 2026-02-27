@@ -4,7 +4,7 @@ using System.Text;
 
 namespace task_3
 {
-    enum MenuEnum
+    public enum MenuEnum
     {
         None,
         Add,

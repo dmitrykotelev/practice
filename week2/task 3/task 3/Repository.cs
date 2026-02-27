@@ -1,6 +1,6 @@
-﻿using Dapper;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using task_3;
+using Dapper;
 
 public class Repository
 {
@@ -12,7 +12,9 @@ public class Repository
 
 	public void Add(Tasks tasks)
 	{
-		string query = "INSERT INTO Tasks (Title, Description, IsCompleted, CreatedAt) VALUES(@Title, @Description, @IsCompleted, @CreatedAt)";
+		string query = "INSERT INTO "
+            + "Tasks (Title, Description, IsCompleted, CreatedAt) "
+            + "VALUES(@Title, @Description, @IsCompleted, @CreatedAt)";
 
         db.Execute(query, tasks);
 	}
@@ -32,7 +34,11 @@ public class Repository
 	{
 		Tasks task = new Tasks(GetById(id));
 		task.ChangeStatus();
-		string sqlQuery = "Update Tasks SET Title = @Title, Description = @Description, IsCompleted = @IsCompleted, CreatedAt = @CreatedAt WHERE Id = @Id";
+		string sqlQuery = "Update Tasks SET Title = @Title, "
+			+ "Description = @Description,"
+            + " IsCompleted = @IsCompleted,"
+            + " CreatedAt = @CreatedAt"
+            + " WHERE Id = @Id";
 
     }
 

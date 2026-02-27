@@ -13,7 +13,7 @@ public class Tasks
 		IsCompleted = !IsCompleted;
 	}
 
-	public Tasks() { }
+	public Tasks() { } // empty constructor for dapper
 	public Tasks(Tasks tasks)
 	{
 		Id = tasks.Id;
