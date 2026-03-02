@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="task4ModelBase/task4ModelBase.csproj" />
+  <Project Path="task4/task4WebApi.csproj" />
+</Solution>
