@@ -9,11 +9,11 @@ namespace task_3
         public MenuEnum GetUserPick()
         {
             Console.WriteLine($"Choose what to do\n" +
-                    $"{MenuEnum.Add} - 1\n" +
-                    $"{MenuEnum.GetAll} - 2\n" +
-                    $"{MenuEnum.Delete} - 3\n" +
-                    $"{MenuEnum.Update} - 4\n" +
-                    $"{MenuEnum.Exit} - 5\n");
+                    $"{MenuEnum.Add} - {MenuEnum.Add}\n" +
+                    $"{MenuEnum.GetAll} - {MenuEnum.GetAll}\n" +
+                    $"{MenuEnum.Delete} -  {MenuEnum.Delete} \n" +
+                    $"{MenuEnum.Update} -  {MenuEnum.Update} \n" +
+                    $"{MenuEnum.Exit} -  {MenuEnum.Exit}\n");
             if (int.TryParse(Console.ReadLine(), out int UserPick))
             {
                 
