@@ -1,6 +1,4 @@
 ﻿using task4ModelBase.Models;
-using task4ModelBase.Database;
-
 
 namespace task4ModelBase.Database
 {
@@ -10,35 +8,35 @@ namespace task4ModelBase.Database
         private List<Book> Books = new List<Book>();
 
         public DatabaseCore() { }
-        public DbResponce<Author> AddAuthor(Author author)
+        public bool AddAuthor(Author author)
         {
             Authors.Add(author);
-            return new DbResponce<Author>(ResponceStatus.SuccessAdd);
+            return true;
         }
-        public DbResponce<Author> RemoveAuthor(int id)
+        public bool RemoveAuthor(int id)
         {
             foreach (Author author in Authors)
                 if (author.GetId() == id)
                 {
                     Authors.Remove(author);
-                    return new DbResponce<Author>(ResponceStatus.SuccessDelete);
+                    return true;
                 }
-            return new DbResponce<Author>(ResponceStatus.NotFound);
+            return false;
         }
-        public DbResponce<Author> GetAuthor(int id)
+        public Author GetAuthor(int id)
         {
             foreach (Author author in Authors)
             {
-                if (author.GetId() == id) return new DbResponce<Author>(ResponceStatus.SuccessReturn, author);
+                if (author.GetId() == id) return author;
             }
 
-            return new DbResponce<Author>(ResponceStatus.NotFound);
+            return null;
         }
-        public DbResponce<Author> GetAllAuthors()
+        public List<Author> GetAllAuthors()
         {
-            return new DbResponce<Author>(ResponceStatus.SuccessReturnList, Authors);
+            return new List<Author>(Authors);
         }
-        public DbResponce<Author> UpdateAuthor(Author author)
+        public bool UpdateAuthor(Author author)
         {
             if (Authors.Contains(author))
             {
@@ -47,44 +45,43 @@ namespace task4ModelBase.Database
                     if (!Authors[i].Equals(author))
                     {
                         Authors.Insert(i, author);
-                        return new DbResponce<Author>(ResponceStatus.SuccessUpdate);
+                        return true;
                     }
                 }
             }
-            else return new DbResponce<Author>(ResponceStatus.NotFound);
-            return new DbResponce<Author>(ResponceStatus.Failure);
+            return false;
 
         }
 
 
-        public DbResponce<Book> AddBook(Book book)
+        public bool AddBook(Book book)
         {
             Books.Add(book);
-            return new DbResponce<Book>(ResponceStatus.SuccessAdd);
+            return true;
         }
-        public DbResponce<Book> RemoveBook(int id)
+        public bool RemoveBook(int id)
         {
             foreach (Book book in Books)
                 if (book.GetId() == id)
                 {
                     Books.Remove(book);
-                    return new DbResponce<Book>(ResponceStatus.SuccessDelete);
+                    return true;
                 }
-            return new DbResponce<Book>(ResponceStatus.NotFound);
+            return false;
         }
-        public DbResponce<Book> GetAllBooks()
+        public List<Book> GetAllBooks()
         {
-            return new DbResponce<Book>(ResponceStatus.SuccessReturnList, Books);
+            return new List<Book>(Books);
         }
-        public DbResponce<Book> GetBook(int id)
+        public Book GetBook(int id)
         {
             foreach (Book book in Books)
             {
-                if (book.GetId() == id) return new DbResponce<Book>(ResponceStatus.SuccessReturn, book);
+                if (book.GetId() == id) return book;
             }
-            return new DbResponce<Book>(ResponceStatus.NotFound);
+            return null;
         }
-        public DbResponce<Book> UpdateBook(Book book)
+        public bool UpdateBook(Book book)
         {
             if (Books.Contains(book))
             {
@@ -93,12 +90,11 @@ namespace task4ModelBase.Database
                     if (!Books[i].Equals(book))
                     {
                         Books.Insert(i, book);
-                        return new DbResponce<Book>(ResponceStatus.SuccessUpdate);
+                        return true;
                     }
                 }
             }
-            else return new DbResponce<Book>(ResponceStatus.NotFound);
-            return new DbResponce<Book>(ResponceStatus.Failure);
+            return false;
 
         }
 

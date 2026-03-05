@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace task4ModelBase.Database
+namespace task4Services.Mapper.DtoModdels
 {
-    public enum ResponceStatus
+    public interface IDto
     {
-        Success,
-        Failure,
-        NotFound
-    }
 
+    }
 }

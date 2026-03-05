@@ -4,7 +4,10 @@ namespace task4ModelBase.Models
 {
     public class Book : IModel
     {
-        private int Id;
+        public int Id;
+        public string Title;
+        public DateTime PublishedYear;
+        public int AuthorId;
         public int GetId() {  return Id; }
 
     }

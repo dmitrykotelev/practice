@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="task4ModelBase/task4ModelBase.csproj" />
-  <Project Path="task4/task4WebApi.csproj" />
+  <Project Path="task4Services/task4Services.csproj" Id="d70b69a9-34e7-4d72-95c0-eb115301e890" />
+  <Project Path="task4WebApi/task4WebApi.csproj" Id="69650c33-4b9f-4648-a34f-f32638c2dd52" />
 </Solution>
