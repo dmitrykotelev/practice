@@ -6,7 +6,7 @@ namespace task_3
 {
     public class MenuFunctions
     {
-        public MenuEnum UserPick()
+        public MenuEnum GetUserPick()
         {
             Console.WriteLine($"Choose what to do\n" +
                     $"{MenuEnum.Add} - 1\n" +
@@ -14,23 +14,21 @@ namespace task_3
                     $"{MenuEnum.Delete} - 3\n" +
                     $"{MenuEnum.Update} - 4\n" +
                     $"{MenuEnum.Exit} - 5\n");
-            if (int.TryParse(Console.ReadLine(), out int i))
+            if (int.TryParse(Console.ReadLine(), out int UserPick))
             {
-                var fields = typeof(MenuEnum).GetFields().Where(fi => fi.IsLiteral);
-                List<MenuEnum> fieldValues = fields.Select(fi => fi.GetRawConstantValue()).Cast<MenuEnum>().ToList<MenuEnum>();
                 
-                if(fieldValues.Contains(UserPick()))
-                    return fieldValues[i];
+                if(Enum.IsDefined((MenuEnum)UserPick))
+                    return (MenuEnum)UserPick;
                 else
                 {
                     Console.WriteLine("Wrong pick, try again");
-                    return UserPick();
+                    return this.GetUserPick();
                 }
             }
             else
             {
                 Console.WriteLine("Eror type a number");
-                return UserPick();
+                return this.GetUserPick();
             }
         }
 

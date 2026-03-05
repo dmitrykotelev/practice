@@ -12,7 +12,7 @@ namespace task_3
             int id;
             while (true)
             {
-                switch (menuFunctions.UserPick())
+                switch (menuFunctions.GetUserPick())
                 {
                     case MenuEnum.Add:
                         {
