@@ -1,13 +1,14 @@
-﻿using task4ModelBase.Database.DbManager;
+﻿using task4ModelBase.Database;
 using task4ModelBase.Models;
 
 namespace task4ModelBase.Repository
 {
-    public class BookRepository<T> : Repository<T> where T : Book
+    public class BookRepository : Repository<Book>
     {
-        public BookRepository(DbManager<T> dBManager) : base(dBManager)
+
+        public BookRepository(DatabaseCore databaseCore) : base(databaseCore.Books)
         {
-            base.DbManager = dBManager;
+            base.DbSet = databaseCore.Books;
         }
     }
 }

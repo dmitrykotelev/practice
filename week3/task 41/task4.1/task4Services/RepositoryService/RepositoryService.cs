@@ -1,30 +1,37 @@
-﻿using task4ModelBase.Interfaces;
+﻿using task4Services.Mapper.DtoModdels;
+using task4ModelBase.Interfaces;
 using task4ModelBase.Repository;
+using task4Services.Validator;
 using AutoMapper;
-using task4Services.Mapper.DtoModdels;
 
 namespace task4Services.RepositoryService
 {
-    public class RepositoryService
+    public class RepositoryService<T> where T : class , IModel
     {
-        protected Repository<IModel> Repo;
+        protected Repository<T> Repo;
         protected IMapper Mapper;
 
-        public void Add(IDto dto)
+        public IDto Add(IDto dto)
         {
-            IModel data;
-            Mapper.Map(dto, data);
+            var data = Mapper.Map<T>(dto);
             Repo.Add(data);
+            return dto;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            Repo.Delete(id);
+            var data = Repo.Delete(id);
+            if (data == null)
+                return false;
+            else 
+                return true;
         }
 
-        public void Update(IDto dto)
+        public IDto Update(IDto dto)
         {
+            var data = Mapper.Map<T>(dto);
             Repo.Update(data);
+            return dto;
         }
     }
 }

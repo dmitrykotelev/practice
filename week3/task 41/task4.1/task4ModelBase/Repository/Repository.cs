@@ -4,49 +4,49 @@ using task4ModelBase.Database;
 
 namespace task4ModelBase.Repository
 {
-    abstract public class Repository<T> where T : class
+    abstract public class Repository<T> where T : class , IModel
     {
-        protected DbManager<T> DbManager;
+        protected MyDbSet<T> DbSet;
 
-        protected Repository(DbManager<T> dBManager)
+        protected Repository(MyDbSet<T> dBManager)
         {
-            DbManager = dBManager;
+            DbSet = dBManager;
         }
 
-        public bool Add(T model)
+        public T Add(T model)
         {
-            var responce = DbManager.Add((T)model);
+            var responce = DbSet.Add((T)model);
             if (responce.Status == ResponceStatus.Success)
-                return true;
-            else return false;
+                return responce.Data;
+            else return null;
         }
         public virtual T GetById(int id)
         {
-            var responce = DbManager.GetById(id);
-            if (responce.Status == ResponceStatus.Success)
-                return responce.Data;
-            return default(T);
-        }
-        public List<T> GetAll()
-        {
-            var responce = DbManager.GetAll();
+            var responce = DbSet.GetById(id);
             if (responce.Status == ResponceStatus.Success)
                 return responce.Data;
             return null;
         }
-        public virtual bool Delete(int id)
+        public IEnumerable<T> GetAll()
         {
-            var responce = DbManager.Delete(id);
+            var responce = DbSet.GetAll();
             if (responce.Status == ResponceStatus.Success)
-                return true;
-            return false;
+                return responce.Data;
+            return null;
         }
-        public bool Update(T model)
+        public virtual T Delete(int id)
         {
-            var responce = DbManager.Update(model);
+            var responce = DbSet.Delete(id);
             if (responce.Status == ResponceStatus.Success)
-                return true;
-            return false;
+                return responce.Data;
+            return null;
+        }
+        public T Update(T model)
+        {
+            var responce = DbSet.Update(model);
+            if (responce.Status == ResponceStatus.Success)
+                return responce.Data;
+            return null;
         }
     }
 }

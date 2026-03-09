@@ -2,41 +2,65 @@
 using task4Services.Mapper;
 using task4Services.Mapper.DtoModdels;
 using task4Services.RepositoryService;
+using task4Services.Validator;
 
 namespace task4WebApi.Controllers
 {
+    [Route("api/Author")]
     public class AuthorController : Controller
     {
         private AuthorService repo;
-        public AuthorController(AuthorService _repo)
+        private AuthorValidator validator;
+        public AuthorController(AuthorService _repo, AuthorValidator _validator)
         {
             repo = _repo;
+            validator = _validator;
         }
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             var data = repo.GetById(id);
-            return View(data);
+            if (data == null)
+                return NotFound();
+            else
+                return Ok(data);
         }
+
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            if (!repo.Delete(id))
+                return NotFound();
+            return Ok();
         }
-        [HttpPost]
-        public IActionResult Add(AuthorDto data)
+
+        [HttpPost("Add")]
+        public async  Task<IActionResult> Add(AuthorDto data)
         {
-            return View();
+            var validationResult = await validator.ValidateAsync(data);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult);
+            }
+            repo.Add(data);
+            return Ok(data);
         }
-        [HttpPost]
-        public IActionResult Update(AuthorDto data)
+
+        [HttpPost("Update")]
+        public async Task<IActionResult> Update(AuthorDto data)
         {
-            return View();
+            var _data = repo.GetById(data.Id);
+            if (_data == null)
+                return NotFound();
+
+            repo.Update(data);
+            return Ok(data);
         }
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll()
         {
-            return View();
+            var data = repo.GetAll();
+            return Ok(data);
         }
     }
 }

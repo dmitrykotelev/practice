@@ -1,10 +1,7 @@
 ﻿namespace task4Services
 {
-    internal class Tester
+    public class Tester
     {
-        static void Main()
-        {
-
-        }
+        public static void Main() { }
     }
 }

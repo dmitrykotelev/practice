@@ -9,10 +9,15 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="16.1.0" />
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\task4ModelBase\task4ModelBase.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DbManagerService\" />
   </ItemGroup>
 
 </Project>

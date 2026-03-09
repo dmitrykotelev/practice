@@ -1,11 +1,9 @@
-using AutoMapper;
 using task4Services.Mapper;
 using task4Services.RepositoryService;
 using task4ModelBase.Repository;
 using task4ModelBase.Database;
-using task4ModelBase.Models;
-using task4ModelBase.Database.DbManager;
-using task4Services.DbManager;
+using FluentValidation;
+using task4Services.Validator;
 
 namespace task4WebApi
 {
@@ -15,9 +13,21 @@ namespace task4WebApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddScoped<DbManagerService>();
+            builder.Services.AddSingleton<DatabaseCore>();
+
+            builder.Services.AddAutoMapper(cfg => { }, 
+                typeof(MapperProfile).Assembly);
+
+            builder.Services.AddScoped<AuthorRepository>();
+            builder.Services.AddScoped<BookRepository>();
+
+            builder.Services.AddOptionsWithValidateOnStart<AuthorValidator>();
+            builder.Services.AddOptionsWithValidateOnStart<BookValidator>();
+
+
             builder.Services.AddScoped<AuthorService>();
             builder.Services.AddScoped<BookService>();
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

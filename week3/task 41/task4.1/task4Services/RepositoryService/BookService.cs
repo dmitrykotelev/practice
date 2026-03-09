@@ -2,12 +2,13 @@
 using task4ModelBase.Models;
 using task4ModelBase.Repository;
 using task4Services.Mapper.DtoModdels;
+using task4Services.Validator;
 
 namespace task4Services.RepositoryService
 {
-    public class BookService : RepositoryService
+    public class BookService : RepositoryService<Book>
     {
-        public BookService(BookRepository<Book> repo, IMapper mapper)
+        public BookService(BookRepository repo, IMapper mapper)
         {
             base.Repo = repo;
             base.Mapper = mapper;
@@ -16,18 +17,17 @@ namespace task4Services.RepositoryService
         public BookDto GetById(int id)
         {
             var data = Repo.GetById(id);
-            BookDto dto = new BookDto();
-            Mapper.Map(dto, data);
+            BookDto dto = Mapper.Map<BookDto>(data);
             return dto;
         }
 
-        public List<BookDto> GetAll(int id)
+        public List<BookDto> GetAll()
         {
             var data = Repo.GetAll();
-            BookDto dto = new BookDto();
             List<BookDto> dtoList = new List<BookDto>();
             foreach (var unit in data)
             {
+                BookDto dto = new BookDto();
                 Mapper.Map(unit, dto);
                 dtoList.Add(dto);
             }

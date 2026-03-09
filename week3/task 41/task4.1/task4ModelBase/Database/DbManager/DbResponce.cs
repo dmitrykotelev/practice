@@ -1,6 +1,4 @@
-﻿using task4ModelBase.Interfaces;
-
-namespace task4ModelBase.Database.DbManager
+﻿namespace task4ModelBase.Database.DbManager
 {
     public class DbResponce<T> where T : class
     {
