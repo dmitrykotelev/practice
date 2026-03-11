@@ -2,7 +2,6 @@ using task4Services.Mapper;
 using task4Services.RepositoryService;
 using task4ModelBase.Repository;
 using task4ModelBase.Database;
-using FluentValidation;
 using task4Services.Validator;
 
 namespace task4WebApi
@@ -21,8 +20,8 @@ namespace task4WebApi
             builder.Services.AddScoped<AuthorRepository>();
             builder.Services.AddScoped<BookRepository>();
 
-            builder.Services.AddOptionsWithValidateOnStart<AuthorValidator>();
-            builder.Services.AddOptionsWithValidateOnStart<BookValidator>();
+            builder.Services.AddScoped<AuthorValidator>();
+            builder.Services.AddScoped<BookValidator>();
 
 
             builder.Services.AddScoped<AuthorService>();

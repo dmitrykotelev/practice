@@ -2,9 +2,9 @@
 {
     public class DbResponce<T> where T : class
     {
-        public ResponceStatus Status = ResponceStatus.Failure;
-        public T Data;
-        Error Error;
+        public readonly ResponceStatus Status = ResponceStatus.Failure;
+        public readonly T Data;
+        public readonly Error Error;
 
         public DbResponce(ResponceStatus status, T model)
         {

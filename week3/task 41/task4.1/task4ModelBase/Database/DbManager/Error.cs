@@ -2,16 +2,9 @@
 {
     public class Error
     {
-        public ResponceStatus Status;
-        public string Message;
-
-        public Error()
+        public readonly string Message;
+        public Error(string message)
         {
-            Status = ResponceStatus.Success;
-        }
-        public Error(ResponceStatus status, string message)
-        {
-            Status = status;
             Message = message;
         }
     }

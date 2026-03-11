@@ -2,7 +2,6 @@
 using task4ModelBase.Models;
 using task4ModelBase.Repository;
 using task4Services.Mapper;
-using task4Services.Validator;
 
 namespace task4Services.RepositoryService
 {
@@ -18,18 +17,14 @@ namespace task4Services.RepositoryService
         {
             var data = Repo.GetById(id);
             AuthorDto dto = Mapper.Map<AuthorDto>(data);
+
             return dto;
         }
         public List<AuthorDto> GetAll()
         {
             var data = Repo.GetAll();
-            List<AuthorDto> dtoList = new List<AuthorDto>();
-            foreach (var unit in data)
-            {
-                AuthorDto dto = new AuthorDto();
-                Mapper.Map(unit, dto);
-                dtoList.Add(dto);
-            }
+            List<AuthorDto> dtoList = Mapper.Map<List<AuthorDto>>(data);
+
             return dtoList;
         }
 

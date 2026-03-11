@@ -16,8 +16,4 @@
     <ProjectReference Include="..\task4ModelBase\task4ModelBase.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DbManagerService\" />
-  </ItemGroup>
-
 </Project>

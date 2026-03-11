@@ -18,10 +18,6 @@ namespace task4ModelBase.Database.DbManager
             {
                 counter++;
                 data.Id = counter;
-                foreach (var item in _collection)
-                {
-                    Console.WriteLine(item.Id);
-                }
                 _collection.Add(data);
 
                 return new DbResponce<T>(ResponceStatus.Success, data);
@@ -34,7 +30,7 @@ namespace task4ModelBase.Database.DbManager
                 var data = _collection.FirstOrDefault(x => x.Id == id);
 
                 if (data == null)
-                    return new DbResponce<T>(ResponceStatus.NotFound, new Error());
+                    return new DbResponce<T>(ResponceStatus.NotFound, new Error("Element not found"));
                 else
                     return new DbResponce<T>(ResponceStatus.Success, data);
             }
@@ -51,14 +47,14 @@ namespace task4ModelBase.Database.DbManager
                     return new DbResponce<T>(ResponceStatus.Success, data.Data);
                 }
                 else
-                    return new DbResponce<T>(ResponceStatus.NotFound, new Error());
+                    return new DbResponce<T>(ResponceStatus.NotFound, new Error("Element not found"));
             }
         }
         public DbResponce<IEnumerable<T>> GetAll()
         {
             lock (_locker)
             {
-                return new DbResponce<IEnumerable<T>>(ResponceStatus.Success, _collection);
+                return new DbResponce<IEnumerable<T>>(ResponceStatus.Success, new List<T>(_collection));
             }
         }
         public DbResponce<T> Update(T data)
@@ -73,7 +69,7 @@ namespace task4ModelBase.Database.DbManager
                     return new DbResponce<T>(ResponceStatus.Success, data);
                 }
                 else
-                    return new DbResponce<T>(ResponceStatus.NotFound, new Error());
+                    return new DbResponce<T>(ResponceStatus.NotFound, new Error("Element not found"));
             }
         }
 

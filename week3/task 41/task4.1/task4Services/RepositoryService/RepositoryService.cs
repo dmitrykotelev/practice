@@ -1,7 +1,6 @@
 ﻿using task4Services.Mapper.DtoModdels;
 using task4ModelBase.Interfaces;
 using task4ModelBase.Repository;
-using task4Services.Validator;
 using AutoMapper;
 
 namespace task4Services.RepositoryService
@@ -15,12 +14,14 @@ namespace task4Services.RepositoryService
         {
             var data = Mapper.Map<T>(dto);
             Repo.Add(data);
+
             return dto;
         }
 
         public bool Delete(int id)
         {
             var data = Repo.Delete(id);
+
             if (data == null)
                 return false;
             else 
@@ -31,6 +32,7 @@ namespace task4Services.RepositoryService
         {
             var data = Mapper.Map<T>(dto);
             Repo.Update(data);
+
             return dto;
         }
     }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using task4Services.Mapper;
-using task4Services.Mapper.DtoModdels;
 using task4Services.RepositoryService;
 using task4Services.Validator;
 
@@ -31,6 +30,7 @@ namespace task4WebApi.Controllers
         {
             if (!repo.Delete(id))
                 return NotFound();
+
             return Ok();
         }
 
@@ -43,6 +43,7 @@ namespace task4WebApi.Controllers
                 return BadRequest(validationResult);
             }
             repo.Add(data);
+
             return Ok(data);
         }
 
@@ -54,12 +55,14 @@ namespace task4WebApi.Controllers
                 return NotFound();
 
             repo.Update(data);
+
             return Ok(data);
         }
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var data = repo.GetAll();
+
             return Ok(data);
         }
     }

@@ -9,7 +9,5 @@ namespace task4ModelBase.Models
         public string Title;
         public DateTime PublishedYear;
         public int AuthorId;
-        public int GetId() {  return Id; }
-
     }
 }

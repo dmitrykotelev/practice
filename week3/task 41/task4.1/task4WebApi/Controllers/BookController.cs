@@ -11,10 +11,10 @@ namespace task4WebApi.Controllers
         private BookService repo;
         private BookValidator validator;
         private AuthorService authorRepo;
-        public BookController(BookService _repo, AuthorService authorRepo, BookValidator _validator)
+        public BookController(BookService _repo, AuthorService _authorRepo, BookValidator _validator)
         {
             repo = _repo;
-            authorRepo = authorRepo;
+            authorRepo = _authorRepo;
             validator = _validator;
         }
 
@@ -33,18 +33,24 @@ namespace task4WebApi.Controllers
         {
             if (!repo.Delete(id))
                 return NotFound();
+
             return Ok();
         }
 
         [HttpPost("Add")]
         public async Task<IActionResult> Add(BookDto data)
         {
+            var authorCheck = authorRepo.GetById(data.AuthorId);
+            if (authorCheck == null)
+                return NotFound();
+
             var validationResult = await validator.ValidateAsync(data);
             if (!validationResult.IsValid)
             {
                 return BadRequest(validationResult);
             }
             repo.Add(data);
+
             return Ok(data);
         }
 
@@ -56,6 +62,7 @@ namespace task4WebApi.Controllers
                 return NotFound();
 
             repo.Update(data);
+
             return Ok(data);
         }
 
@@ -63,6 +70,7 @@ namespace task4WebApi.Controllers
         public async Task<IActionResult> GetAll()
         {
             var data = repo.GetAll();
+
             return Ok(data);
         }
 
