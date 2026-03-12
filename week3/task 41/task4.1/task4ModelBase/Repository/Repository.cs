@@ -4,7 +4,7 @@ using task4ModelBase.Interfaces;
 
 namespace task4ModelBase.Repository
 {
-    abstract public class Repository<T> where T : class , IModel
+    abstract public class Repository<T>: IRepository<T> where T : class, IModel
     {
         protected MyDbSet<T> DbSet;
 
@@ -49,6 +49,11 @@ namespace task4ModelBase.Repository
             var responce = DbSet.Update(model);
 
             return StatusCheck(responce);
+        }
+
+        public int Count()
+        {
+            return DbSet.Count(); 
         }
 
         private T StatusCheck(DbResponce<T> responce)
