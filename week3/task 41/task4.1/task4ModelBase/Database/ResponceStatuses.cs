@@ -2,9 +2,9 @@
 {
     public enum ResponceStatus
     {
-        Success,
-        Failure,
-        NotFound
+        Success = 0,
+        Failure = 1,
+        NotFound = 2,
     }
 
 }

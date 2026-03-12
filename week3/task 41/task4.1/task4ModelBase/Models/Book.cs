@@ -6,8 +6,8 @@ namespace task4ModelBase.Models
     {
         public int Id { get; set; }
         public string Name {  get; set; }
-        public string Title;
-        public DateTime PublishedYear;
-        public int AuthorId;
+        public string Title {  get; set; }
+        public DateTime PublishedYear { get; set; }
+        public int AuthorId { get; set; }
     }
 }

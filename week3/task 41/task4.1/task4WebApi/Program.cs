@@ -6,13 +6,13 @@ using task4Services.Validator;
 
 namespace task4WebApi
 {
-    public class Api
+    public class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddSingleton<DatabaseCore>();
+            builder.Services.AddSingleton<DataBaseConnection>();
 
             builder.Services.AddAutoMapper(cfg => { }, 
                 typeof(MapperProfile).Assembly);
@@ -28,6 +28,7 @@ namespace task4WebApi
             builder.Services.AddScoped<BookService>();
 
             builder.Services.AddControllers();
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -38,8 +39,6 @@ namespace task4WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseAuthorization();
 

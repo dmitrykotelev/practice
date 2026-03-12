@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using task4ModelBase.Interfaces;
 
 namespace task4Services.Mapper.DtoModdels
 {
-    public class BookDto : IDto
+    public class BookDto : IModel
     {
         public int Id { get; set; }
         [Required]

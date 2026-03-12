@@ -1,39 +1,59 @@
-﻿using task4Services.Mapper.DtoModdels;
+﻿using AutoMapper;
 using task4ModelBase.Interfaces;
 using task4ModelBase.Repository;
-using AutoMapper;
+using task4Services.Mapper;
+using task4Services.Mapper.DtoModdels;
 
 namespace task4Services.RepositoryService
 {
-    public class RepositoryService<T> where T : class , IModel
+    abstract public class RepositoryService<T,TT> where T : class , IModel
+                                         where TT : class
     {
-        protected Repository<T> Repo;
-        protected IMapper Mapper;
+        protected readonly Repository<T> _repo;
+        protected readonly IMapper _mapper;
 
-        public IDto Add(IDto dto)
+        public RepositoryService(Repository<T> repo, IMapper mapper)
         {
-            var data = Mapper.Map<T>(dto);
-            Repo.Add(data);
+            _repo = repo;
+            _mapper = mapper;
+        }
+        public TT GetById(int id)
+        {
+            var data = _repo.GetById(id);
+            TT dto = _mapper.Map<TT>(data);
 
-            return dto;
+            return _mapper.Map<TT>(_repo.GetById(id));
+        }
+        public List<TT> GetAll()
+        {
+            var data = _repo.GetAll();
+            List<TT> dtoList = _mapper.Map<List<TT>>(data);
+
+            return dtoList;
+        }
+
+        public TT Add(TT dto)
+        {
+            var data = _mapper.Map<T>(dto);
+
+            return _mapper.Map<TT>(_repo.Add(data));
+        }
+
+        public TT Update(TT dto)
+        {
+            var data = _mapper.Map<T>(dto);
+
+            return _mapper.Map<TT>(_repo.Update(data));
         }
 
         public bool Delete(int id)
         {
-            var data = Repo.Delete(id);
+            var data = _repo.Delete(id);
 
             if (data == null)
                 return false;
             else 
                 return true;
-        }
-
-        public IDto Update(IDto dto)
-        {
-            var data = Mapper.Map<T>(dto);
-            Repo.Update(data);
-
-            return dto;
         }
     }
 }
