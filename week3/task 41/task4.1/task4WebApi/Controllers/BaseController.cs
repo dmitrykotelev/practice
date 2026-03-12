@@ -1,11 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using task4ModelBase.Interfaces;
-using task4Services.Mapper;
-using task4Services.Mapper.DtoModdels;
 using task4Services.RepositoryService;
-using task4Services.Validator;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace task4WebApi.Controllers
 {

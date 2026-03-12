@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using task4ModelBase.Interfaces;
 using task4ModelBase.Repository;
-using task4Services.Mapper;
-using task4Services.Mapper.DtoModdels;
 
 namespace task4Services.RepositoryService
 {
@@ -17,6 +15,7 @@ namespace task4Services.RepositoryService
             _repo = repo;
             _mapper = mapper;
         }
+
         public TT GetById(int id)
         {
             var data = _repo.GetById(id);
@@ -24,6 +23,7 @@ namespace task4Services.RepositoryService
 
             return _mapper.Map<TT>(_repo.GetById(id));
         }
+
         public List<TT> GetAll()
         {
             var data = _repo.GetAll();

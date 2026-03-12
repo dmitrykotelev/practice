@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using task4Services.Mapper;
 using task4ModelBase.Models;
 using task4ModelBase.Repository;
-using task4Services.Mapper;
 
 namespace task4Services.RepositoryService
 {

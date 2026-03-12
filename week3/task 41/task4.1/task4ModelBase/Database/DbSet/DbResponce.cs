@@ -11,11 +11,13 @@
             Status = status; 
             Data = model; 
         }
+
         public DbResponce(ResponceStatus status, Error error)
         {
             Status = status;
             Error = error;
         }
+
         public DbResponce(ResponceStatus status)
         {
             Status = status;
