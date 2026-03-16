@@ -23,6 +23,7 @@ namespace task4WebApi.Controllers
                 return NotFound();
 
             var validationResult = await validator.ValidateAsync(data);
+
             if (!validationResult.IsValid)
             {
                 return BadRequest(validationResult);

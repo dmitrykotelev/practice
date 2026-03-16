@@ -29,7 +29,6 @@ namespace task4Services.RepositoryService
             var data = _repo.GetAll();
             List<TT> dtoList = _mapper.Map<List<TT>>(data);
 
-
             return dtoList;
         }
 

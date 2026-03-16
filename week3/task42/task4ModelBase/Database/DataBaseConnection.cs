@@ -9,15 +9,18 @@ namespace task4ModelBase.Database
     {
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=ABOBA\MSSQLSERVER01;Database=task4;Trusted_Connection=True;TrustServerCertificate=True;");
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             AddAuthors(modelBuilder);
             AddBooks(modelBuilder);
         }
+
         private void AddAuthors(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Author>().HasData(
@@ -33,6 +36,7 @@ namespace task4ModelBase.Database
                 new Author { Id = 10, Name = "Virginia Woolf", DateOfBirth = new DateTime(1882, 1, 25) }
             );
         }
+
         private void AddBooks(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Book>().HasData(

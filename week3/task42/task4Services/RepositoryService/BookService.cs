@@ -8,6 +8,7 @@ namespace task4Services.RepositoryService
     public class BookService : RepositoryService<Book, BookDto>
     {
         public BookService(BookRepository repo, IMapper mapper) : base(repo, mapper) { }
+
         public List<BookDto> FindBooksByYear(DateTime date)
         {
             List<Book> FindedData = base._repo.GetAll().Where(x => x.PublishedYear.Year <= date.Year).ToList();

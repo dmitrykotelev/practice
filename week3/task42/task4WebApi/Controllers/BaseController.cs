@@ -22,6 +22,7 @@ namespace task4WebApi.Controllers
         public virtual async Task<IActionResult> Add(TT data)
         {
             var validationResult = await validator.ValidateAsync(data);
+
             if (!validationResult.IsValid)
             {
                 return BadRequest(validationResult);

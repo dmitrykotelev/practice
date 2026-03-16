@@ -15,6 +15,7 @@ namespace task4WebApi.Controllers
         public async Task<IActionResult> FindByName(string name)
         {
             var data = ((AuthorService)base.repo).FindAuthor(name);
+
             if (data == null)
                 return NotFound();
             else
