@@ -9,12 +9,16 @@ namespace task4WebApi.Controllers
     [Route("api/Author")]
     public class AuthorController : BaseController<Author,AuthorDto>
     {
-        public AuthorController(AuthorService repo, AuthorValidator validator) : base(repo, validator) { }
+        private readonly AuthorService _repo;
+        public AuthorController(AuthorService repo, AuthorValidator validator) : base(repo, validator)
+        {
+            _repo = repo;
+        }
 
         [HttpGet("FindByName")]
         public async Task<IActionResult> FindByName(string name)
         {
-            var data = ((AuthorService)base.repo).FindAuthor(name);
+            var data = _repo.FindByName(name);
 
             if (data == null)
                 return NotFound();

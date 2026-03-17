@@ -10,9 +10,11 @@ namespace task4WebApi.Controllers
     public class BookController : BaseController<Book,BookDto>
     {
         private readonly AuthorService _authorService;
+        private readonly BookService _bookService;
         public BookController(BookService repo, AuthorService authorService, BookValidator validator) : base (repo, validator)
         {
             _authorService = authorService;
+            _bookService = repo;
         }
 
         [HttpPost("Add")]
@@ -43,7 +45,7 @@ namespace task4WebApi.Controllers
         [HttpGet("FindWithYear")]
         public async Task<IActionResult> FindWithYear(int year)
         {
-            var data = ((BookService)base.repo).FindBooksByYear(new DateTime(year, 1, 1));
+            var data = _bookService.FindBooksByYear(new DateTime(year, 1, 1));
             return Ok(data);
         }
     }

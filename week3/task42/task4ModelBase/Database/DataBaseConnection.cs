@@ -10,18 +10,16 @@ namespace task4ModelBase.Database
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=ABOBA\MSSQLSERVER01;Database=task4;Trusted_Connection=True;TrustServerCertificate=True;");
-        }
+        public DataBaseConnection(DbContextOptions<DataBaseConnection> options)
+        : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            AddAuthors(modelBuilder);
-            AddBooks(modelBuilder);
+            SeedAuthors(modelBuilder);
+            SeedBooks(modelBuilder);
         }
 
-        private void AddAuthors(ModelBuilder modelBuilder)
+        private void SeedAuthors(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Author>().HasData(
                 new Author { Id = 1, Name = "William Shakespeare", DateOfBirth = new DateTime(1564, 4, 26) },
@@ -37,7 +35,7 @@ namespace task4ModelBase.Database
             );
         }
 
-        private void AddBooks(ModelBuilder modelBuilder)
+        private void SeedBooks(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Book>().HasData(
                 new Book { Id = 1, Title = "Hamlet", PublishedYear = new DateTime(1603, 1, 1), AuthorId = 1 },

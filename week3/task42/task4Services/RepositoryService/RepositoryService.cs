@@ -19,7 +19,7 @@ namespace task4Services.RepositoryService
         public TT GetById(int id)
         {
             var data = _repo.GetById(id);
-            TT dto = _mapper.Map<TT>(data); 
+            TT dto = _mapper.Map<TT>(data);
 
             return _mapper.Map<TT>(_repo.GetById(id));
         }

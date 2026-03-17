@@ -9,9 +9,8 @@ namespace task4ModelBase.Repository
         protected DataBaseConnection Context;
         protected DbSet<T> DbSet;
 
-        protected Repository(DbSet<T> dbSet, DataBaseConnection context)
+        protected Repository(DataBaseConnection context)
         {
-            DbSet = dbSet;
             Context = context;
         }
 

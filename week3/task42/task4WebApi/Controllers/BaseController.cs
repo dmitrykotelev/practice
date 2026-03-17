@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using task4ModelBase.Interfaces;
 using task4Services.RepositoryService;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace task4WebApi.Controllers
 {

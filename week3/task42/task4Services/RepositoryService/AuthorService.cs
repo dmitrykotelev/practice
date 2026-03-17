@@ -9,7 +9,7 @@ namespace task4Services.RepositoryService
     {
         public AuthorService(AuthorRepository repo, IMapper mapper) : base(repo, mapper) { }
 
-        public AuthorDto FindAuthor(string name)
+        public AuthorDto FindByName(string name)
         {
             var data = base._repo.GetAll().Where(x => x.Name.Contains(name)).ToList().First();
             return base._mapper.Map<AuthorDto>(data);
