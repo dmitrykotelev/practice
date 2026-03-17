@@ -6,17 +6,18 @@ namespace task4ModelBase.Repository
 {
     abstract public class Repository<T>: IRepository<T> where T : class, IModel
     {
-        protected DataBaseConnection Context;
-        protected DbSet<T> DbSet;
+        private readonly DataBaseConnection _context;
+        private readonly DbSet<T> _dbSet;
 
         protected Repository(DataBaseConnection context)
         {
-            Context = context;
+            _context = context;
+            _dbSet = context.Set<T>();
         }
 
-        public T Add(T model)
+        public virtual T Add(T model)
         {
-            var response = DbSet.Add(model);
+            var response = _dbSet.Add(model);
 
             if (Save())
             return (T)response.Entity;
@@ -26,20 +27,20 @@ namespace task4ModelBase.Repository
 
         public virtual T GetById(int id)
         {
-            var response = DbSet.Find(id);
+            var response = _dbSet.Find(id);
             return response;
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
-            var response = DbSet.ToList();
+            var response = _dbSet.ToList();
             return response;
         }
 
         public virtual T Delete(int id)
         {
             T model = GetById(id);
-            var response = DbSet.Remove(model);
+            var response = _dbSet.Remove(model);
 
             if (Save())
                 return (T)response.Entity;
@@ -47,10 +48,10 @@ namespace task4ModelBase.Repository
             return null;
         }
 
-        public T Update(T model)
+        public virtual T Update(T model)
         {
-            var data = DbSet.Local.FirstOrDefault(x => x.Id == model.Id);
-            DbSet.Entry(data).CurrentValues.SetValues(model);
+            var data = _dbSet.Local.FirstOrDefault(x => x.Id == model.Id);
+            _dbSet.Entry(data).CurrentValues.SetValues(model);
 
 
             if (Save())
@@ -61,12 +62,12 @@ namespace task4ModelBase.Repository
 
         public int Count()
         {
-            return DbSet.Count(); 
+            return _dbSet.Count(); 
         }
 
-        public bool Save()
+        private bool Save()
         {
-            var status = Context.SaveChanges();
+            var status = _context.SaveChanges();
             if (status != 0)
                 return true;
 

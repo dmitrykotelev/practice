@@ -20,6 +20,9 @@ namespace task4WebApi.Controllers
         [HttpPost("Add")]
         public override async Task<IActionResult> Add(BookDto data)
         {
+            if (data == null)
+                return BadRequest();
+
             var authorCheck = _authorService.GetById(data.AuthorId);
             if (authorCheck == null)
                 return NotFound();
@@ -36,6 +39,9 @@ namespace task4WebApi.Controllers
         [HttpPost("Update")]
         public override async Task<IActionResult> Update(BookDto data)
         {
+            if (data == null)
+                return BadRequest();
+
             if (repo.GetById(data.Id) == null || _authorService.GetById(data.AuthorId) == null)
                 return NotFound();
 
@@ -46,6 +52,10 @@ namespace task4WebApi.Controllers
         public async Task<IActionResult> FindWithYear(int year)
         {
             var data = _bookService.FindBooksByYear(new DateTime(year, 1, 1));
+
+            if (data == null) 
+                return NotFound();
+
             return Ok(data);
         }
     }

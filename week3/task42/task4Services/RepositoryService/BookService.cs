@@ -11,8 +11,8 @@ namespace task4Services.RepositoryService
 
         public List<BookDto> FindBooksByYear(DateTime date)
         {
-            List<Book> FindedData = base._repo.GetAll().Where(x => x.PublishedYear.Year <= date.Year).ToList();
-            return base._mapper.Map<List<BookDto>>(FindedData);
+            List<Book> FindedData = _repo.GetAll().Where(x => x.PublishedYear.Year <= date.Year).ToList();
+            return _mapper.Map<List<BookDto>>(FindedData);
         }
     }
 }

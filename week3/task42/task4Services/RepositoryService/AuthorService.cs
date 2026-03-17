@@ -11,8 +11,8 @@ namespace task4Services.RepositoryService
 
         public AuthorDto FindByName(string name)
         {
-            var data = base._repo.GetAll().Where(x => x.Name.Contains(name)).ToList().First();
-            return base._mapper.Map<AuthorDto>(data);
+            var data = _repo.GetAll().Where(x => x.Name.Contains(name)).ToList().First();
+            return _mapper.Map<AuthorDto>(data);
         }
     }
 }

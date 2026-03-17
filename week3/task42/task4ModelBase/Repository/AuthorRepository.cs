@@ -5,9 +5,6 @@ namespace task4ModelBase.Repository
 {
     public class AuthorRepository : Repository<Author>
     {
-        public AuthorRepository(DataBaseConnection databaseCore) : base(databaseCore)
-        {
-            DbSet = databaseCore.Authors;
-        }
+        public AuthorRepository(DataBaseConnection databaseCore) : base(databaseCore) { }
     }
 }
