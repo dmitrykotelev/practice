@@ -23,9 +23,8 @@ namespace task4WebApi.Controllers
             if (data == null)
                 return BadRequest();
 
-            var authorCheck = _authorService.GetById(data.AuthorId);
-            if (authorCheck == null)
-                return NotFound();
+            if (_authorService.GetById(data.AuthorId ?? 0) == null)
+                data.AuthorId = null;
 
             var validationResult = await validator.ValidateAsync(data);
 
@@ -42,7 +41,10 @@ namespace task4WebApi.Controllers
             if (data == null)
                 return BadRequest();
 
-            if (repo.GetById(data.Id) == null || _authorService.GetById(data.AuthorId) == null)
+            if (_authorService.GetById(data.AuthorId ?? 0) == null)
+                data.AuthorId = null;
+
+            if (repo.GetById(data.Id) == null)
                 return NotFound();
 
             return Ok(repo.Update(data));

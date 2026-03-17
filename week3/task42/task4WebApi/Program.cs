@@ -14,7 +14,8 @@ namespace task4WebApi
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddDbContext<DataBaseConnection>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+                                 x => x.MigrationsAssembly("task4ModelBase")));
 
             builder.Services.AddAutoMapper(cfg => { }, 
                 typeof(MapperProfile).Assembly);

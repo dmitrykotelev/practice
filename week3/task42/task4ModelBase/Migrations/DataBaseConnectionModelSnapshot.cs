@@ -112,7 +112,7 @@ namespace task4ModelBase.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AuthorId")
+                    b.Property<int?>("AuthorId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("PublishedYear")
@@ -212,9 +212,7 @@ namespace task4ModelBase.Migrations
                 {
                     b.HasOne("task4ModelBase.Models.Author", null)
                         .WithMany("Books")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorId");
                 });
 
             modelBuilder.Entity("task4ModelBase.Models.Author", b =>

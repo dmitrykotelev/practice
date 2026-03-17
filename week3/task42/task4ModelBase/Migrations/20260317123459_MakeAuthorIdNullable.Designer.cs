@@ -12,8 +12,8 @@ using task4ModelBase.Database;
 namespace task4ModelBase.Migrations
 {
     [DbContext(typeof(DataBaseConnection))]
-    [Migration("20260316111337_SeedData")]
-    partial class SeedData
+    [Migration("20260317123459_MakeAuthorIdNullable")]
+    partial class MakeAuthorIdNullable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,7 +115,7 @@ namespace task4ModelBase.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AuthorId")
+                    b.Property<int?>("AuthorId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("PublishedYear")
@@ -215,9 +215,7 @@ namespace task4ModelBase.Migrations
                 {
                     b.HasOne("task4ModelBase.Models.Author", null)
                         .WithMany("Books")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorId");
                 });
 
             modelBuilder.Entity("task4ModelBase.Models.Author", b =>
