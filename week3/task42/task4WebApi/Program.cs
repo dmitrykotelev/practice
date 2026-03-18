@@ -1,7 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using task4ModelBase.Database;
+using task4ModelBase.Repository;
 using task4Services.Mapper;
 using task4Services.RepositoryService;
-using task4ModelBase.Repository;
-using task4ModelBase.Database;
 using task4Services.Validator;
 
 namespace task4WebApi
@@ -12,7 +13,9 @@ namespace task4WebApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddSingleton<DataBaseConnection>();
+            builder.Services.AddDbContext<DataBaseConnection>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+                                 x => x.MigrationsAssembly("task4ModelBase")));
 
             builder.Services.AddAutoMapper(cfg => { }, 
                 typeof(MapperProfile).Assembly);

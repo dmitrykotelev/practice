@@ -5,7 +5,6 @@ namespace task4ModelBase.Repository
 {
     public class BookRepository : Repository<Book>
     {
-
-        public BookRepository(DataBaseConnection databaseCore) : base(databaseCore.Books) { }
+        public BookRepository(DataBaseConnection databaseCore) : base(databaseCore) { }
     }
 }

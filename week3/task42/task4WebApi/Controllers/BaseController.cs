@@ -20,7 +20,11 @@ namespace task4WebApi.Controllers
         [HttpPost("Add")]
         public virtual async Task<IActionResult> Add(TT data)
         {
+            if (data == null)
+                return BadRequest();
+
             var validationResult = await validator.ValidateAsync(data);
+
             if (!validationResult.IsValid)
             {
                 return BadRequest(validationResult);
@@ -42,6 +46,9 @@ namespace task4WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+            if (repo.GetById(id) == null)
+                return NotFound();
+
             if (!repo.Delete(id))
                 return NotFound();
 
@@ -49,10 +56,12 @@ namespace task4WebApi.Controllers
         }
 
         [HttpPost("Update")]
-        public async Task<IActionResult> Update(TT data)
+        public virtual async Task<IActionResult> Update(TT data)
         {
-            var _data = repo.GetById(data.Id);
-            if (_data == null)
+            if (data == null)
+                return BadRequest();
+
+            if (repo.GetById(data.Id) == null)
                 return NotFound();
 
             return Ok(repo.Update(data));

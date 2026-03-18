@@ -10,8 +10,7 @@ namespace task4Services.Mapper.DtoModdels
         [StringLength(20, MinimumLength = 3)]
         public string Title { get; set; }
         public DateTime PublishedYear { get; set; } = DateTime.Now;
-        [Required]
-        public int AuthorId { get; set; }
+        public int? AuthorId { get; set; }
 
     }
 }
